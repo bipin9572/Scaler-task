@@ -1,0 +1,16 @@
+{% extends "task/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load bootstrap4 %}
+
+<div class="container mycontent">
+
+    <form class="myform" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form interview_form %}
+        {% bootstrap_form slot_form %}
+        <input type="submit" value="Schedule" class="btn btn-success">
+    </form>
+</div>
+
+{% endblock %}

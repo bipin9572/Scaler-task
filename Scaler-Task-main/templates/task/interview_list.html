@@ -1,0 +1,52 @@
+{% extends "task/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load bootstrap4 %}
+<div class="container myinterviews">
+    <h2 style="text-align: center; padding: 15px;">Upcoming Interviews</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Interviewers</th>
+                <th scope="col">Candidates</th>
+                <th scope="col">Date</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                <th scope="col">Resume</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in interviews %}
+            <tr>
+                <th scope="row">{{obj.id}}</th>
+                <td>{{obj.title}}</td>
+                <td>
+                    {% for i in obj.interviewers.all %}
+                    {{i.interviewer_name}},
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for i in obj.candidates.all %}
+                    {{i.candidate_name}}, 
+                    {% endfor %}
+                </td>
+                <td>{{obj.slot.date}}</td>
+                <td>{{obj.slot.start_time}}</td>
+                <td>{{obj.slot.end_time}}</td>
+                <td>
+                    {% if obj.resume %}
+                    <a href="https://scaler-task.herokuapp.com/media/{{obj.resume}}" target='_blank'>Resume's link</a>
+                    {% else %}
+                    N/A
+                    {% endif %}                    
+                </td>
+                <td><a href="{% url 'task:reschedule-interview' pk=obj.id %}"><button class="btn btn-primary">Update</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

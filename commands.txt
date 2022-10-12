@@ -1,0 +1,6 @@
+PS F:\Downloads\Scaler-Task-main> venv/scripts/activate      
+(venv) PS F:\Downloads\Scaler-Task-main> cd .\Scaler-Task-main\
+(venv) PS F:\Downloads\Scaler-Task-main\Scaler-Task-main> python manage.py runserver
+$env:SECRET_KEY="1234"
+$env:EMAIL_HOST_USER="2019017@iiitdmj.ac.in"
+$env:EMAIL_HOST_PASSWORD="1234"
